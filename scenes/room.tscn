@@ -1,0 +1,99 @@
+[gd_scene load_steps=15 format=3 uid="uid://ceyo5j6yjj8ar"]
+
+[ext_resource type="Texture2D" uid="uid://bg8jghoayxre7" path="res://Asset/Sprites/background/room_bg.png" id="1_room_bg"]
+[ext_resource type="PackedScene" path="res://scenes/player.tscn" id="2_player_scene"]
+[ext_resource type="Script" uid="uid://boo0detekwjl5" path="res://scripts/scene_door.gd" id="3_door_script"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_room_top_wall"]
+size = Vector2(408, 118)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_room_left_wall"]
+size = Vector2(17, 248)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_room_right_wall"]
+size = Vector2(16, 256)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_room_bottom_left"]
+size = Vector2(41, 28)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_room_bottom_right"]
+size = Vector2(376, 27)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bookshelf"]
+size = Vector2(189, 58)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_desk"]
+size = Vector2(31, 70)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_chair"]
+radius = 18.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bed"]
+size = Vector2(53, 93)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_table"]
+size = Vector2(60, 30)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_door_trigger"]
+size = Vector2(54, 18)
+
+[node name="root" type="Node2D"]
+
+[node name="Background" type="Sprite2D" parent="."]
+texture = ExtResource("1_room_bg")
+
+[node name="Walls" type="StaticBody2D" parent="."]
+
+[node name="TopWall" type="CollisionShape2D" parent="Walls"]
+position = Vector2(-32, -74)
+shape = SubResource("RectangleShape2D_room_top_wall")
+
+[node name="LeftWall" type="CollisionShape2D" parent="Walls"]
+position = Vector2(-231.5, 0)
+shape = SubResource("RectangleShape2D_room_left_wall")
+
+[node name="RightWall" type="CollisionShape2D" parent="Walls"]
+position = Vector2(232, -4)
+shape = SubResource("RectangleShape2D_room_right_wall")
+
+[node name="BottomLeftWall" type="CollisionShape2D" parent="Walls"]
+position = Vector2(-219.5, 121)
+shape = SubResource("RectangleShape2D_room_bottom_left")
+
+[node name="BottomRightWall" type="CollisionShape2D" parent="Walls"]
+position = Vector2(46, 120.5)
+shape = SubResource("RectangleShape2D_room_bottom_right")
+
+[node name="Furniture" type="StaticBody2D" parent="."]
+
+[node name="Bookshelf" type="CollisionShape2D" parent="Furniture"]
+position = Vector2(72.5, -33)
+shape = SubResource("RectangleShape2D_bookshelf")
+
+[node name="Desk" type="CollisionShape2D" parent="Furniture"]
+position = Vector2(95.5, -17)
+shape = SubResource("RectangleShape2D_desk")
+
+[node name="Chair" type="CollisionShape2D" parent="Furniture"]
+position = Vector2(116, -33)
+shape = SubResource("CircleShape2D_chair")
+
+[node name="Bed" type="CollisionShape2D" parent="Furniture"]
+position = Vector2(198.5, -85.5)
+shape = SubResource("RectangleShape2D_bed")
+
+[node name="TeaTable" type="CollisionShape2D" parent="Furniture"]
+position = Vector2(196, 76)
+shape = SubResource("RectangleShape2D_table")
+
+[node name="Player" parent="." instance=ExtResource("2_player_scene")]
+position = Vector2(-170, 36)
+
+[node name="DoorToLevel1" type="Area2D" parent="."]
+position = Vector2(-176, 123)
+script = ExtResource("3_door_script")
+target_scene = "res://scenes/level1.tscn"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DoorToLevel1"]
+position = Vector2(5, 13)
+shape = SubResource("RectangleShape2D_door_trigger")

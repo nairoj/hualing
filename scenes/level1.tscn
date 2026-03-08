@@ -1,0 +1,135 @@
+[gd_scene load_steps=20 format=3 uid="uid://c8iihhc4dlita"]
+
+[ext_resource type="Texture2D" uid="uid://dqlxqjbtas1uc" path="res://Asset/Sprites/background/level1_bg.png" id="1_level_bg"]
+[ext_resource type="PackedScene" path="res://scenes/player.tscn" id="2_player_scene"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_level1_top_wall"]
+size = Vector2(1896, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_level1_bottom_wall"]
+size = Vector2(1896, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_level1_left_wall"]
+size = Vector2(16, 2808)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_level1_right_wall"]
+size = Vector2(16, 2808)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_top_left_void"]
+size = Vector2(838, 748)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_upper_left_trees"]
+size = Vector2(640, 489)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_top_right_canopy"]
+size = Vector2(760, 220)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_upper_right_trees"]
+size = Vector2(428, 820.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_right_mid_trees"]
+size = Vector2(511, 416)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_right_void"]
+size = Vector2(700, 2003)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_left_cliff"]
+size = Vector2(363, 380)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_center_grass_block"]
+size = Vector2(337, 435)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lower_left_forest"]
+size = Vector2(320, 765)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lower_right_forest"]
+size = Vector2(397, 518)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_rock_left"]
+radius = 70.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_rock_center"]
+radius = 95.02105
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_rock_right"]
+radius = 80.0
+
+[node name="root" type="Node2D"]
+
+[node name="Background" type="Sprite2D" parent="."]
+texture = ExtResource("1_level_bg")
+
+[node name="Walls" type="StaticBody2D" parent="."]
+
+[node name="TopWall" type="CollisionShape2D" parent="Walls"]
+position = Vector2(3, -1326)
+shape = SubResource("RectangleShape2D_level1_top_wall")
+
+[node name="BottomWall" type="CollisionShape2D" parent="Walls"]
+position = Vector2(0, 1408)
+shape = SubResource("RectangleShape2D_level1_bottom_wall")
+
+[node name="LeftWall" type="CollisionShape2D" parent="Walls"]
+position = Vector2(-952, 0)
+shape = SubResource("RectangleShape2D_level1_left_wall")
+
+[node name="RightWall" type="CollisionShape2D" parent="Walls"]
+position = Vector2(952, 0)
+shape = SubResource("RectangleShape2D_level1_right_wall")
+
+[node name="Obstacles" type="StaticBody2D" parent="."]
+
+[node name="TopLeftVoid" type="CollisionShape2D" parent="Obstacles"]
+position = Vector2(-531, -1046)
+shape = SubResource("RectangleShape2D_top_left_void")
+
+[node name="UpperLeftTrees" type="CollisionShape2D" parent="Obstacles"]
+position = Vector2(-677, -662.5)
+shape = SubResource("RectangleShape2D_upper_left_trees")
+
+[node name="TopRightCanopy" type="CollisionShape2D" parent="Obstacles"]
+position = Vector2(520, -1280)
+shape = SubResource("RectangleShape2D_top_right_canopy")
+
+[node name="UpperRightTrees" type="CollisionShape2D" parent="Obstacles"]
+position = Vector2(740, -997.75)
+shape = SubResource("RectangleShape2D_upper_right_trees")
+
+[node name="RightMidTrees" type="CollisionShape2D" parent="Obstacles"]
+position = Vector2(264.5, -508)
+shape = SubResource("RectangleShape2D_right_mid_trees")
+
+[node name="RightVoid" type="CollisionShape2D" parent="Obstacles"]
+position = Vector2(347, 424)
+shape = SubResource("RectangleShape2D_right_void")
+
+[node name="LeftCliff" type="CollisionShape2D" parent="Obstacles"]
+position = Vector2(-768.5, -472)
+shape = SubResource("RectangleShape2D_left_cliff")
+
+[node name="CenterGrassBlock" type="CollisionShape2D" parent="Obstacles"]
+position = Vector2(50, -143)
+shape = SubResource("RectangleShape2D_center_grass_block")
+
+[node name="LowerLeftForest" type="CollisionShape2D" parent="Obstacles"]
+position = Vector2(-790, 554)
+shape = SubResource("RectangleShape2D_lower_left_forest")
+
+[node name="LowerRightForest" type="CollisionShape2D" parent="Obstacles"]
+position = Vector2(-206.5, 576)
+shape = SubResource("RectangleShape2D_lower_right_forest")
+
+[node name="RockLeft" type="CollisionShape2D" parent="Obstacles"]
+position = Vector2(-798, 1046)
+shape = SubResource("CircleShape2D_rock_left")
+
+[node name="RockCenter" type="CollisionShape2D" parent="Obstacles"]
+position = Vector2(-464, 1193)
+shape = SubResource("CircleShape2D_rock_center")
+
+[node name="RockRight" type="CollisionShape2D" parent="Obstacles"]
+position = Vector2(-370, 1215)
+shape = SubResource("CircleShape2D_rock_right")
+
+[node name="Player" parent="." instance=ExtResource("2_player_scene")]
+position = Vector2(-484, 1033)

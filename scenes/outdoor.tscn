@@ -1,0 +1,86 @@
+[gd_scene load_steps=9 format=3]
+
+[ext_resource type="Texture2D" path="res://Asset/Sprites/huwai_tileset/ForestBackground.png" id="1_2lrlt"]
+[ext_resource type="Script" path="res://scripts/player_controller.gd" id="2_rv1n4"]
+[ext_resource type="Script" path="res://scripts/partner_controller.gd" id="3_a8f2n"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_player"]
+radius = 10.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_attack"]
+radius = 18.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_agui_body"]
+size = Vector2(18, 20)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_agui_detect"]
+radius = 92.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_agui_attack"]
+radius = 16.0
+
+[node name="root" type="Node2D"]
+
+[node name="Background" type="Sprite2D" parent="."]
+texture = ExtResource("1_2lrlt")
+
+[node name="Player" type="CharacterBody2D" parent="."]
+script = ExtResource("2_rv1n4")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Player"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
+shape = SubResource("CircleShape2D_player")
+
+[node name="AttackArea" type="Area2D" parent="Player"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player/AttackArea"]
+shape = SubResource("CircleShape2D_attack")
+
+[node name="Camera2D" type="Camera2D" parent="Player"]
+enabled = true
+
+[node name="Agui" type="CharacterBody2D" parent="."]
+position = Vector2(-48, 16)
+script = ExtResource("3_a8f2n")
+follow_slot_offset = Vector2(-48, 20)
+sprite_sheet_dir = "res://Asset/Sprites/Agui_spritesheet/"
+sprite_prefix = "agui"
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Agui"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Agui"]
+shape = SubResource("RectangleShape2D_agui_body")
+
+[node name="DetectionArea" type="Area2D" parent="Agui"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Agui/DetectionArea"]
+shape = SubResource("CircleShape2D_agui_detect")
+
+[node name="AttackArea" type="Area2D" parent="Agui"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Agui/AttackArea"]
+shape = SubResource("CircleShape2D_agui_attack")
+
+[node name="Aqi" type="CharacterBody2D" parent="."]
+position = Vector2(-84, -6)
+script = ExtResource("3_a8f2n")
+move_speed = 125.0
+follow_slot_offset = Vector2(-82, -10)
+sprite_sheet_dir = "res://Asset/Sprites/Aqi_spritesheet/"
+sprite_prefix = "aqi"
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Aqi"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Aqi"]
+shape = SubResource("RectangleShape2D_agui_body")
+
+[node name="DetectionArea" type="Area2D" parent="Aqi"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Aqi/DetectionArea"]
+shape = SubResource("CircleShape2D_agui_detect")
+
+[node name="AttackArea" type="Area2D" parent="Aqi"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Aqi/AttackArea"]
+shape = SubResource("CircleShape2D_agui_attack")
